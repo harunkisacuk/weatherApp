@@ -10,7 +10,7 @@ var options = {
 export const ForecastCard = ({ temp, icon, time }) => {
   return (
     <Wrapper>
-      <Img src={`${Constants.PATH_ICON}${icon}.png`} />
+      {icon && <Img src={`${Constants.PATH_ICON}${icon}.png`} />}
       <ResultTemp>{temp}&#xb0;C</ResultTemp>
       <SummaryItem>
         {new Date(time).toLocaleDateString("en-GB", options)}

@@ -40,6 +40,7 @@ export const NextDaysForecast = ({ weathers, city }) => {
           .filter((item) => parseInt(item.temp) <= parseInt(maxTemp))
           .map((weather) => (
             <ForecastCard
+              key={weather?.valid_date}
               temp={weather?.temp}
               time={weather?.valid_date}
               icon={weather?.weather?.icon}

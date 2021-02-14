@@ -23,7 +23,7 @@ export const Card = ({ temp, city, icon, time }) => {
       <SummaryItem>
         {new Date(time).toLocaleDateString("en-GB", options)}
       </SummaryItem>
-      <Img src={`${Constants.PATH_ICON}${icon}.png`} />
+      {icon && <Img src={`${Constants.PATH_ICON}${icon}.png`} />}
       <ResultTemp>{temp}&#xb0;C</ResultTemp>
       <SummaryItem>{city}</SummaryItem>
     </Wrapper>
