@@ -1,21 +1,52 @@
-// import { getWeather } from "services/weatherService";
-import { getWeather } from "services/mockData";
-import { useEffect, useState } from "react";
-export const NextDaysForecast = () => {
-  const [weathers, setWeathers] = useState([]);
-  console.log("​NextDaysForecast -> wheaters", weathers);
-  useEffect(() => {
-    getWeather({ url: "/forecast/daily" }).then((res) => setWeathers(res.data));
-  }, []);
+import { ForecastCard } from "components";
+import { FaHome } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
+import {
+  Wrapper,
+  WrapperInput,
+  WrapperCards,
+  Input,
+  Button,
+  Title,
+} from "./NextDaysForecast.styles";
+import { useState } from "react";
+export const NextDaysForecast = ({ weathers, city }) => {
+  const [minTemp, setMinTemp] = useState(-100);
+  const [maxTemp, setMaxTemp] = useState(100);
+  const history = useHistory();
+
+  const handleBack = () => {
+    history.push("/");
+  };
+  const handleMinTemp = (e) => {
+    setMinTemp(e.target.value || -100);
+  };
+  const handleMaxTemp = (e) => {
+    setMaxTemp(e.target.value || 100);
+  };
   return (
-    <>
-      NextDaysForecast Page
-      <br />
-      {weathers?.map((weather) => (
-        <div>
-          {`${weather?.datetime} tarihinde hava ${weather?.temp}`}&#xb0; olacak
-        </div>
-      ))}
-    </>
+    <Wrapper>
+      <Title>{city}</Title>
+      <WrapperInput>
+        <Button onClick={handleBack}>
+          <FaHome />
+        </Button>
+        <Input type="number" placeholder="min temp" onChange={handleMinTemp} />
+        <Input type="number" placeholder="max temp" onChange={handleMaxTemp} />
+      </WrapperInput>
+      <WrapperCards>
+        {weathers
+          .filter((item) => parseInt(item.temp) >= parseInt(minTemp))
+          .filter((item) => parseInt(item.temp) <= parseInt(maxTemp))
+          .map((weather) => (
+            <ForecastCard
+              temp={weather?.temp}
+              time={weather?.valid_date}
+              icon={weather?.weather?.icon}
+              city={city}
+            />
+          ))}
+      </WrapperCards>
+    </Wrapper>
   );
 };

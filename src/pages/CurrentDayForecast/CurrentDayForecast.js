@@ -1,18 +1,14 @@
-// import { getWeather } from "services/weatherService";
-import { getWeather } from "services/mockData";
+import { Card } from "components";
 
-import { useEffect, useState } from "react";
-export const CurrentDayForecast = () => {
-  const [weather, setWeather] = useState([]);
-  console.log("​CurrentDayForecast -> weather", weather);
-  useEffect(() => {
-    getWeather().then((res) => setWeather(res.data[0]))
-  }, []);
+
+export const CurrentDayForecast = ({ weather, city }) => {
+
   return (
-    <>
-      <br />
-      CurrentDayForecast Page
-      {`${weather?.datetime} tarihinde hava ${weather?.temp}`}&#xb0; olacak
-    </>
+    <Card
+      temp={weather?.temp}
+      time={weather?.ob_time}
+      icon={weather?.weather?.icon}
+      city={city}
+    />
   );
 };

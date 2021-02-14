@@ -1,12 +1,25 @@
-import { CurrentDayForecast, NextDaysForecast } from "pages";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import { Main, CurrentDayForecast, NextDaysForecast } from "pages";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useState } from "react";
 function App() {
+  const [weathers, setWeathers] = useState([]);
+	console.log("​App -> weathers", weathers)
+  const [city, setCity] = useState({});
+
+  // return ;
   return (
     <Router>
-      Weather App
-      <Route path="/" exact component={CurrentDayForecast} />
-      <Route path="/nextDays" component={NextDaysForecast} />
+      <Switch>
+        <Route path="/" exact>
+          <Main setWeathers={setWeathers} city={city} setCity={setCity} />
+        </Route>
+        <Route path="/currentDay" exact>
+          <CurrentDayForecast weather={weathers[0]} city={city.label} />
+        </Route>
+        <Route path="/nextDays">
+          <NextDaysForecast weathers={weathers} city={city.label} />
+        </Route>
+      </Switch>
     </Router>
   );
 }
