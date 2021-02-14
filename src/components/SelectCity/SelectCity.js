@@ -10,7 +10,6 @@ import { useHistory } from "react-router-dom";
 import Constants from "config/constants";
 import { BsSearch } from "react-icons/bs";
 import { getWeather } from "services/weatherService";
-// import { getWeather } from "services/mockData";
 
 export const SelectCity = ({ setWeathers, isChecked, value, setValue }) => {
   const history = useHistory();

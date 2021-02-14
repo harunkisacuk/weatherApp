@@ -10,8 +10,6 @@ var options = {
 };
 
 export const Card = ({ temp, city, icon, time }) => {
-  console.log("​Card -> datetime", time);
-  console.log("​Card -> icon", icon, Constants.PATH_ICON);
   const history = useHistory();
   const handleBack = () => {
     history.push("/");

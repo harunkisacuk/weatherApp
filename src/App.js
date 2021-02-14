@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 function App() {
   const [weathers, setWeathers] = useState([]);
-	console.log("​App -> weathers", weathers)
   const [city, setCity] = useState({});
 
   // return ;
