@@ -10,6 +10,7 @@ import {
   Title,
 } from "./NextDaysForecast.styles";
 import { useState } from "react";
+
 export const NextDaysForecast = ({ weathers, city }) => {
   const [minTemp, setMinTemp] = useState(-100);
   const [maxTemp, setMaxTemp] = useState(100);
@@ -25,20 +26,33 @@ export const NextDaysForecast = ({ weathers, city }) => {
     setMaxTemp(e.target.value || 100);
   };
   return (
-    <Wrapper>
-      <Title>{city}</Title>
+    <Wrapper data-testid="nextDaysForecastComp">
+      <Title data-testid="nextDaysForecastTitle">{city}</Title>
       <WrapperInput>
-        <Button onClick={handleBack}>
+        <Button
+          data-testid="nextDaysForecastHomeBackButton"
+          onClick={handleBack}
+        >
           <FaHome />
         </Button>
-        <Input type="number" placeholder="min temp" onChange={handleMinTemp} />
-        <Input type="number" placeholder="max temp" onChange={handleMaxTemp} />
+        <Input
+          data-testid="nextDaysForecastMinTemp"
+          type="number"
+          placeholder="min temp"
+          onChange={handleMinTemp}
+        />
+        <Input
+          data-testid="nextDaysForecastMaxTemp"
+          type="number"
+          placeholder="max temp"
+          onChange={handleMaxTemp}
+        />
       </WrapperInput>
-      <WrapperCards>
+      <WrapperCards data-testid="nextDaysForecastCardsWrapper">
         {weathers
-          .filter((item) => parseInt(item.temp) >= parseInt(minTemp))
-          .filter((item) => parseInt(item.temp) <= parseInt(maxTemp))
-          .map((weather) => (
+          ?.filter((item) => parseInt(item.temp) >= parseInt(minTemp))
+          ?.filter((item) => parseInt(item.temp) <= parseInt(maxTemp))
+          ?.map((weather) => (
             <ForecastCard
               key={weather?.valid_date}
               temp={weather?.temp}

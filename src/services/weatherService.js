@@ -14,6 +14,7 @@ const options = {
 export const getWeather = async (reqData = {}) => {
   try {
     const res = await axios.request({ ...options, ...reqData });
+    console.log("​getWeather -> res?.data", res?.data);
     return res?.data;
   } catch (error) {
     console.error(error);

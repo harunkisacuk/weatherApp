@@ -16,16 +16,21 @@ export const Card = ({ temp, city, icon, time }) => {
   };
 
   return (
-    <Wrapper>
-      <Button onClick={handleBack}>
+    <Wrapper data-testid="cardComp">
+      <Button data-testid="iconButton" onClick={handleBack}>
         <FiCornerUpLeft />
       </Button>
-      <SummaryItem>
+      <SummaryItem data-testid="currentDate">
         {new Date(time).toLocaleDateString("en-GB", options)}
       </SummaryItem>
-      {icon && <Img src={`${Constants.PATH_ICON}${icon}.png`} />}
-      <ResultTemp>{temp}&#xb0;C</ResultTemp>
-      <SummaryItem>{city}</SummaryItem>
+      {icon && (
+        <Img
+          data-testid="weatherImage"
+          src={`${Constants.PATH_ICON}${icon}.png`}
+        />
+      )}
+      <ResultTemp data-testid="weatherTemp">{temp}&#xb0;C</ResultTemp>
+      <SummaryItem data-testid="weatherCityName">{city}</SummaryItem>
     </Wrapper>
   );
 };

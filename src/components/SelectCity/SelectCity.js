@@ -36,19 +36,24 @@ export const SelectCity = ({ setWeathers, isChecked, value, setValue }) => {
     }
   };
   return (
-    <Wrapper>
+    <Wrapper data-testid="selectCityComp">
       <Title>Weather App</Title>
 
-      <FormWrapper id="weather-form">
-        <InputWrapper className="form-div">
+      <FormWrapper data-testid="selectCityWeatherForm" id="weather-form">
+        <InputWrapper data-testid="selectCityInputWrapper" className="form-div">
           <ReactSelect
+            id="selectCitySelect"
             placeholder="Your city here"
             isClearable
             onChange={handleChange}
             onInputChange={handleInputChange}
             options={Constants.CITIES}
           />
-          <IconButton onClick={handleSubmit} disabled={!value.value}>
+          <IconButton
+            data-testid="selectCityIconButton"
+            onClick={handleSubmit}
+            disabled={!value?.value}
+          >
             <BsSearch />
           </IconButton>
         </InputWrapper>

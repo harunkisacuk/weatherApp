@@ -9,10 +9,15 @@ var options = {
 
 export const ForecastCard = ({ temp, icon, time }) => {
   return (
-    <Wrapper>
-      {icon && <Img src={`${Constants.PATH_ICON}${icon}.png`} />}
-      <ResultTemp>{temp}&#xb0;C</ResultTemp>
-      <SummaryItem>
+    <Wrapper data-testid="forecastCardComp">
+      {icon && (
+        <Img
+          data-testid="forecastCardImage"
+          src={`${Constants.PATH_ICON}${icon}.png`}
+        />
+      )}
+      <ResultTemp data-testid="forecastCardTemp">{temp}&#xb0;C</ResultTemp>
+      <SummaryItem data-testid="forecastCardDate">
         {new Date(time).toLocaleDateString("en-GB", options)}
       </SummaryItem>
     </Wrapper>

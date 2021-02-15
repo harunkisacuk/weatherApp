@@ -10,15 +10,16 @@ export const Main = ({ setWeathers, city, setCity }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="mainComp">
       <SelectCity
         value={city}
         setValue={setCity}
         isChecked={isChecked}
         setWeathers={setWeathers}
       />
-      <SwitchField>
+      <SwitchField data-testid="switchField">
         <Input
+          data-testid="radioInputOne"
           type="radio"
           id="radio-one"
           name="switch-one"
@@ -28,6 +29,7 @@ export const Main = ({ setWeathers, city, setCity }) => {
         />
         <Label htmlFor="radio-one">Current Weather</Label>
         <Input
+          data-testid="radioInputTwo"
           type="radio"
           id="radio-two"
           name="switch-one"
